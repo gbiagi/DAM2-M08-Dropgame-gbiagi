@@ -71,10 +71,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        // clear the screen with a dark blue color. The
-        // arguments to clear are the red, green
-        // blue and alpha component in the range [0,1]
-        // of the color to be used to clear the screen.
+        // clear the screen with a dark blue color.
         ScreenUtils.clear(0, 0, 0.2f, 1);
 
         // tell the camera to update its matrices.
@@ -117,12 +114,16 @@ public class GameScreen implements Screen {
             spawnRaindrop();
 
         // move the raindrops, remove any that are beneath the bottom edge of
-        // the screen or that hit the bucket. In the later case we increase the
-        // value our drops counter and add a sound effect.
+        // the screen or that hit the bucket.
+        // If it hits the bucket, increase value of drops counter and add a sound effect.
         Iterator<Rectangle> iter = raindrops.iterator();
         while (iter.hasNext()) {
             Rectangle raindrop = iter.next();
             raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindrop.y <= 0) {
+                // Finish game
+                game.dispose();
+            }
             if (raindrop.y + 64 < 0)
                 iter.remove();
             if (raindrop.overlaps(bucket)) {
