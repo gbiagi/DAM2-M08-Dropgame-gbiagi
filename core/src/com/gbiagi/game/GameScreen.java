@@ -121,9 +121,8 @@ public class GameScreen implements Screen {
             Rectangle raindrop = iter.next();
             raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
             if (raindrop.y <= 0) {
-                // Finish game
-                game.dispose();
-            }
+                // Finish game, go back to main screen
+                game.setScreen(new MainMenuScreen(game));}
             if (raindrop.y + 64 < 0)
                 iter.remove();
             if (raindrop.overlaps(bucket)) {

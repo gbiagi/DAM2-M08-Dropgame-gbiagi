@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class MainMenuScreen implements Screen {
-
-
     final Drop game;
-
     OrthographicCamera camera;
 
     public MainMenuScreen(final Drop game) {
